@@ -31,16 +31,16 @@
             staffexpensetitle = new Label();
             lblStaffName = new Label();
             lblExpenseDate = new Label();
-            label1 = new Label();
+            lblExpenseCategory = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            groupBox1 = new GroupBox();
+            gbEstimatedResults = new GroupBox();
             lblAdjustmentMessage = new Label();
             lblEstimate = new Label();
             label6 = new Label();
             txtStaffName = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
+            dtpExpenseDate = new DateTimePicker();
             numKilometres = new NumericUpDown();
             numAmount = new NumericUpDown();
             cboCategory = new ComboBox();
@@ -48,9 +48,9 @@
             btnClear = new Button();
             label5 = new Label();
             txtDescription = new RichTextBox();
-            label7 = new Label();
-            label8 = new Label();
-            groupBox1.SuspendLayout();
+            lblKmamount = new Label();
+            lblMaxInfo = new Label();
+            gbEstimatedResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numKilometres).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numAmount).BeginInit();
             SuspendLayout();
@@ -83,14 +83,14 @@
             lblExpenseDate.TabIndex = 2;
             lblExpenseDate.Text = "Expense Date";
             // 
-            // label1
+            // lblExpenseCategory
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 134);
-            label1.Name = "label1";
-            label1.Size = new Size(100, 15);
-            label1.TabIndex = 3;
-            label1.Text = "Expense Category";
+            lblExpenseCategory.AutoSize = true;
+            lblExpenseCategory.Location = new Point(12, 134);
+            lblExpenseCategory.Name = "lblExpenseCategory";
+            lblExpenseCategory.Size = new Size(100, 15);
+            lblExpenseCategory.TabIndex = 3;
+            lblExpenseCategory.Text = "Expense Category";
             // 
             // label2
             // 
@@ -120,19 +120,19 @@
             label4.TabIndex = 6;
             label4.Text = "Estimated amount:";
             // 
-            // groupBox1
+            // gbEstimatedResults
             // 
-            groupBox1.Controls.Add(lblAdjustmentMessage);
-            groupBox1.Controls.Add(lblEstimate);
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(12, 384);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(535, 100);
-            groupBox1.TabIndex = 7;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Estimated Results";
+            gbEstimatedResults.Controls.Add(lblAdjustmentMessage);
+            gbEstimatedResults.Controls.Add(lblEstimate);
+            gbEstimatedResults.Controls.Add(label6);
+            gbEstimatedResults.Controls.Add(label4);
+            gbEstimatedResults.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            gbEstimatedResults.Location = new Point(12, 384);
+            gbEstimatedResults.Name = "gbEstimatedResults";
+            gbEstimatedResults.Size = new Size(535, 100);
+            gbEstimatedResults.TabIndex = 7;
+            gbEstimatedResults.TabStop = false;
+            gbEstimatedResults.Text = "Estimated Results";
             // 
             // lblAdjustmentMessage
             // 
@@ -168,12 +168,13 @@
             txtStaffName.Size = new Size(217, 23);
             txtStaffName.TabIndex = 8;
             // 
-            // dateTimePicker1
+            // dtpExpenseDate
             // 
-            dateTimePicker1.Location = new Point(148, 92);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(217, 23);
-            dateTimePicker1.TabIndex = 9;
+            dtpExpenseDate.Location = new Point(148, 92);
+            dtpExpenseDate.Name = "dtpExpenseDate";
+            dtpExpenseDate.Size = new Size(217, 23);
+            dtpExpenseDate.TabIndex = 9;
+            dtpExpenseDate.Value = new DateTime(2026, 10, 5, 0, 0, 0, 0);
             // 
             // numKilometres
             // 
@@ -237,31 +238,31 @@
             txtDescription.TabIndex = 16;
             txtDescription.Text = "";
             // 
-            // label7
+            // lblKmamount
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(290, 179);
-            label7.Name = "label7";
-            label7.Size = new Size(74, 15);
-            label7.TabIndex = 17;
-            label7.Text = "$0.85 per km";
+            lblKmamount.AutoSize = true;
+            lblKmamount.Location = new Point(290, 179);
+            lblKmamount.Name = "lblKmamount";
+            lblKmamount.Size = new Size(74, 15);
+            lblKmamount.TabIndex = 17;
+            lblKmamount.Text = "$0.85 per km";
             // 
-            // label8
+            // lblMaxInfo
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(290, 218);
-            label8.Name = "label8";
-            label8.Size = new Size(246, 15);
-            label8.TabIndex = 18;
-            label8.Text = "Maximum allowed: $35 (Meal) / $40 (Parking)";
+            lblMaxInfo.AutoSize = true;
+            lblMaxInfo.Location = new Point(290, 218);
+            lblMaxInfo.Name = "lblMaxInfo";
+            lblMaxInfo.Size = new Size(246, 15);
+            lblMaxInfo.TabIndex = 18;
+            lblMaxInfo.Text = "Maximum allowed: $35 (Meal) / $40 (Parking)";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(559, 496);
-            Controls.Add(label8);
-            Controls.Add(label7);
+            Controls.Add(lblMaxInfo);
+            Controls.Add(lblKmamount);
             Controls.Add(txtDescription);
             Controls.Add(label5);
             Controls.Add(btnClear);
@@ -269,20 +270,21 @@
             Controls.Add(cboCategory);
             Controls.Add(numAmount);
             Controls.Add(numKilometres);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(dtpExpenseDate);
             Controls.Add(txtStaffName);
-            Controls.Add(groupBox1);
+            Controls.Add(gbEstimatedResults);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(lblExpenseCategory);
             Controls.Add(lblExpenseDate);
             Controls.Add(lblStaffName);
             Controls.Add(staffexpensetitle);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "Form1";
             Text = "Staff Expense Claim Estimator window";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            gbEstimatedResults.ResumeLayout(false);
+            gbEstimatedResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numKilometres).EndInit();
             ((System.ComponentModel.ISupportInitialize)numAmount).EndInit();
             ResumeLayout(false);
@@ -294,13 +296,13 @@
         private Label staffexpensetitle;
         private Label lblStaffName;
         private Label lblExpenseDate;
-        private Label label1;
+        private Label lblExpenseCategory;
         private Label label2;
         private Label label3;
         private Label label4;
-        private GroupBox groupBox1;
+        private GroupBox gbEstimatedResults;
         private TextBox txtStaffName;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpExpenseDate;
         private NumericUpDown numKilometres;
         private NumericUpDown numAmount;
         private ComboBox cboCategory;
@@ -309,8 +311,8 @@
         private Label label5;
         private RichTextBox txtDescription;
         private Label label6;
-        private Label label7;
-        private Label label8;
+        private Label lblKmamount;
+        private Label lblMaxInfo;
         private Label lblAdjustmentMessage;
         private Label lblEstimate;
     }

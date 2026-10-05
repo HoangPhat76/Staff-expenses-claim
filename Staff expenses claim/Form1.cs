@@ -10,6 +10,8 @@ namespace Staff_expenses_claim
         public Form1()
         {
             InitializeComponent();
+            dtpExpenseDate.MaxDate = DateTime.Now;
+
         }
 
         private void label2_Click(object sender, EventArgs e)
