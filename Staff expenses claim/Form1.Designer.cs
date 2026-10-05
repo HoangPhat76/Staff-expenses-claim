@@ -32,21 +32,21 @@
             lblStaffName = new Label();
             lblExpenseDate = new Label();
             lblExpenseCategory = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
+            lblKilometres = new Label();
+            lblAmount = new Label();
+            lblEstimatedAmounttitle = new Label();
             gbEstimatedResults = new GroupBox();
             lblAdjustmentMessage = new Label();
             lblEstimate = new Label();
-            label6 = new Label();
+            lblAdjustmentMessagetitle = new Label();
             txtStaffName = new TextBox();
             dtpExpenseDate = new DateTimePicker();
             numKilometres = new NumericUpDown();
             numAmount = new NumericUpDown();
-            cboCategory = new ComboBox();
+            cboExpenseCategory = new ComboBox();
             btnCal = new Button();
             btnClear = new Button();
-            label5 = new Label();
+            lblPurpose = new Label();
             txtDescription = new RichTextBox();
             lblKmamount = new Label();
             lblMaxInfo = new Label();
@@ -92,40 +92,40 @@
             lblExpenseCategory.TabIndex = 3;
             lblExpenseCategory.Text = "Expense Category";
             // 
-            // label2
+            // lblKilometres
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(12, 185);
-            label2.Name = "label2";
-            label2.Size = new Size(58, 15);
-            label2.TabIndex = 4;
-            label2.Text = "Kilometer";
-            label2.Click += label2_Click;
+            lblKilometres.AutoSize = true;
+            lblKilometres.Location = new Point(12, 185);
+            lblKilometres.Name = "lblKilometres";
+            lblKilometres.Size = new Size(58, 15);
+            lblKilometres.TabIndex = 4;
+            lblKilometres.Text = "Kilometer";
+            lblKilometres.Click += label2_Click;
             // 
-            // label3
+            // lblAmount
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(12, 216);
-            label3.Name = "label3";
-            label3.Size = new Size(94, 15);
-            label3.TabIndex = 5;
-            label3.Text = "Expanse amount";
+            lblAmount.AutoSize = true;
+            lblAmount.Location = new Point(12, 216);
+            lblAmount.Name = "lblAmount";
+            lblAmount.Size = new Size(94, 15);
+            lblAmount.TabIndex = 5;
+            lblAmount.Text = "Expense amount";
             // 
-            // label4
+            // lblEstimatedAmounttitle
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(31, 29);
-            label4.Name = "label4";
-            label4.Size = new Size(111, 15);
-            label4.TabIndex = 6;
-            label4.Text = "Estimated amount:";
+            lblEstimatedAmounttitle.AutoSize = true;
+            lblEstimatedAmounttitle.Location = new Point(31, 29);
+            lblEstimatedAmounttitle.Name = "lblEstimatedAmounttitle";
+            lblEstimatedAmounttitle.Size = new Size(111, 15);
+            lblEstimatedAmounttitle.TabIndex = 6;
+            lblEstimatedAmounttitle.Text = "Estimated amount:";
             // 
             // gbEstimatedResults
             // 
             gbEstimatedResults.Controls.Add(lblAdjustmentMessage);
             gbEstimatedResults.Controls.Add(lblEstimate);
-            gbEstimatedResults.Controls.Add(label6);
-            gbEstimatedResults.Controls.Add(label4);
+            gbEstimatedResults.Controls.Add(lblAdjustmentMessagetitle);
+            gbEstimatedResults.Controls.Add(lblEstimatedAmounttitle);
             gbEstimatedResults.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             gbEstimatedResults.Location = new Point(12, 384);
             gbEstimatedResults.Name = "gbEstimatedResults";
@@ -152,14 +152,14 @@
             lblEstimate.TabIndex = 19;
             lblEstimate.Text = "$0.00";
             // 
-            // label6
+            // lblAdjustmentMessagetitle
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(31, 63);
-            label6.Name = "label6";
-            label6.Size = new Size(126, 15);
-            label6.TabIndex = 17;
-            label6.Text = "Adjustment Message:";
+            lblAdjustmentMessagetitle.AutoSize = true;
+            lblAdjustmentMessagetitle.Location = new Point(31, 63);
+            lblAdjustmentMessagetitle.Name = "lblAdjustmentMessagetitle";
+            lblAdjustmentMessagetitle.Size = new Size(126, 15);
+            lblAdjustmentMessagetitle.TabIndex = 17;
+            lblAdjustmentMessagetitle.Text = "Adjustment Message:";
             // 
             // txtStaffName
             // 
@@ -191,15 +191,15 @@
             numAmount.Size = new Size(120, 23);
             numAmount.TabIndex = 11;
             // 
-            // cboCategory
+            // cboExpenseCategory
             // 
-            cboCategory.FormattingEnabled = true;
-            cboCategory.Items.AddRange(new object[] { "Mileage", "Meal", "Parking" });
-            cboCategory.Location = new Point(147, 126);
-            cboCategory.Name = "cboCategory";
-            cboCategory.Size = new Size(218, 23);
-            cboCategory.TabIndex = 12;
-            cboCategory.SelectedIndexChanged += cboCategory_SelectedIndexChanged;
+            cboExpenseCategory.FormattingEnabled = true;
+            cboExpenseCategory.Items.AddRange(new object[] { "Mileage", "Meal", "Parking" });
+            cboExpenseCategory.Location = new Point(147, 126);
+            cboExpenseCategory.Name = "cboExpenseCategory";
+            cboExpenseCategory.Size = new Size(218, 23);
+            cboExpenseCategory.TabIndex = 12;
+            cboExpenseCategory.SelectedIndexChanged += cboCategory_SelectedIndexChanged;
             // 
             // btnCal
             // 
@@ -221,14 +221,14 @@
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
             // 
-            // label5
+            // lblPurpose
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(12, 255);
-            label5.Name = "label5";
-            label5.Size = new Size(50, 15);
-            label5.TabIndex = 15;
-            label5.Text = "Purpose";
+            lblPurpose.AutoSize = true;
+            lblPurpose.Location = new Point(12, 255);
+            lblPurpose.Name = "lblPurpose";
+            lblPurpose.Size = new Size(50, 15);
+            lblPurpose.TabIndex = 15;
+            lblPurpose.Text = "Purpose";
             // 
             // txtDescription
             // 
@@ -264,17 +264,17 @@
             Controls.Add(lblMaxInfo);
             Controls.Add(lblKmamount);
             Controls.Add(txtDescription);
-            Controls.Add(label5);
+            Controls.Add(lblPurpose);
             Controls.Add(btnClear);
             Controls.Add(btnCal);
-            Controls.Add(cboCategory);
+            Controls.Add(cboExpenseCategory);
             Controls.Add(numAmount);
             Controls.Add(numKilometres);
             Controls.Add(dtpExpenseDate);
             Controls.Add(txtStaffName);
             Controls.Add(gbEstimatedResults);
-            Controls.Add(label3);
-            Controls.Add(label2);
+            Controls.Add(lblAmount);
+            Controls.Add(lblKilometres);
             Controls.Add(lblExpenseCategory);
             Controls.Add(lblExpenseDate);
             Controls.Add(lblStaffName);
@@ -297,20 +297,20 @@
         private Label lblStaffName;
         private Label lblExpenseDate;
         private Label lblExpenseCategory;
-        private Label label2;
-        private Label label3;
-        private Label label4;
+        private Label lblKilometres;
+        private Label lblAmount;
+        private Label lblEstimatedAmounttitle;
         private GroupBox gbEstimatedResults;
         private TextBox txtStaffName;
         private DateTimePicker dtpExpenseDate;
         private NumericUpDown numKilometres;
         private NumericUpDown numAmount;
-        private ComboBox cboCategory;
+        private ComboBox cboExpenseCategory;
         private Button btnCal;
         private Button btnClear;
-        private Label label5;
+        private Label lblPurpose;
         private RichTextBox txtDescription;
-        private Label label6;
+        private Label lblAdjustmentMessagetitle;
         private Label lblKmamount;
         private Label lblMaxInfo;
         private Label lblAdjustmentMessage;

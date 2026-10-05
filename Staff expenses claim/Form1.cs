@@ -4,12 +4,14 @@ namespace Staff_expenses_claim
 {
     public partial class Form1 : Form
     {
+        // Declare constants for mileage rate, meal maximum, and parking maximum
         decimal mileageRate = 0.85m;
         decimal mealMaximum = 35.00m;
         decimal parkingMaximum = 40.00m;
         public Form1()
         {
             InitializeComponent();
+            // Set the maximum date for the DateTimePicker to today's date
             dtpExpenseDate.MaxDate = DateTime.Now;
 
         }
@@ -19,10 +21,13 @@ namespace Staff_expenses_claim
 
         }
 
+        // Event handler for the Calculate button click event
         private void btnCal_Click(object sender, EventArgs e)
         {
+            // Error handling for empty fields
             if (txtStaffName.Text == "")
             {
+                // Error handling for empty staff name
                 MessageBox.Show(
                     "Please enter staff name",
                     "Error",
@@ -32,9 +37,10 @@ namespace Staff_expenses_claim
                 txtStaffName.Focus();
                 return;
             }
-
+            
             if (txtDescription.Text == "")
             {
+                // Error handling for empty description
                 MessageBox.Show(
                     "Please enter description",
                     "Error",
@@ -45,19 +51,20 @@ namespace Staff_expenses_claim
                 return;
             }
 
-            if (cboCategory.Text == "")
+            if (cboExpenseCategory.Text == "")
             {
+                // Error handling for empty category selection
                 MessageBox.Show(
                     "Please select a category",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
-                cboCategory.Focus();
+                cboExpenseCategory.Focus();
                 return;
             }
 
-            string category = cboCategory.Text;
+            string category = cboExpenseCategory.Text;
 
             // Milage
             if (category == "Mileage")
@@ -66,6 +73,7 @@ namespace Staff_expenses_claim
 
                 if (kilometres <= 0)
                 {
+                    // Error handling for invalid kilometres input
                     MessageBox.Show(
                         "Please enter a valid number of kilometres",
                         "Error",
@@ -80,6 +88,7 @@ namespace Staff_expenses_claim
 
                 lblEstimate.Text = estimate.ToString("C2");
 
+                // Display the estimated reimbursement
                 MessageBox.Show(
                     "Estimate calculated successfully. \n\n" +
                     "Kilometres: " + kilometres + " km\n" +
@@ -97,6 +106,7 @@ namespace Staff_expenses_claim
 
                 if (amount <= 0)
                 {
+                    // Error handling for invalid meal amount input
                     MessageBox.Show(
                         "Meal amount must be greater than zero",
                         "Error",
@@ -109,6 +119,7 @@ namespace Staff_expenses_claim
 
                 decimal estimate;
 
+                // Check if the meal amount exceeds the maximum limit
                 if (amount > mealMaximum)
                 {
                     estimate = mealMaximum;
@@ -123,6 +134,7 @@ namespace Staff_expenses_claim
 
                 lblEstimate.Text = estimate.ToString("C2");
 
+                // Display the adjustment message and estimated reimbursement
                 MessageBox.Show(
                     lblAdjustmentMessage.Text + "\n\nEstimated reimbursement:" +
                     estimate.ToString("C2"),
@@ -131,11 +143,13 @@ namespace Staff_expenses_claim
                     MessageBoxIcon.Information
                 );
             }
+            //Parking
             else if (category == "Parking")
             {
                 decimal amount = numAmount.Value;
                 if (amount <= 0)
                 {
+                    // Error handling for invalid parking amount input
                     MessageBox.Show(
                         "Parking amount must be greater than zero",
                         "Error",
@@ -147,6 +161,7 @@ namespace Staff_expenses_claim
                 }
                 decimal estimate;
 
+                // Check if the parking amount exceeds the maximum limit
                 if (amount > parkingMaximum)
                 {
                     estimate = parkingMaximum;
@@ -162,6 +177,7 @@ namespace Staff_expenses_claim
 
                 lblEstimate.Text = estimate.ToString("C2");
 
+                // Display the adjustment message and estimated reimbursement
                 MessageBox.Show(
                     lblAdjustmentMessage.Text + "\n\nEstimated reimbursement:" +
                     estimate.ToString("C2"),
@@ -172,10 +188,11 @@ namespace Staff_expenses_claim
             }
         }
 
+        // Event handler for the Clear button click event
         private void btnClear_Click(object sender, EventArgs e)
         {
             txtStaffName.Clear();
-            cboCategory.SelectedIndex = -1;
+            cboExpenseCategory.SelectedIndex = -1;
             numKilometres.Value = 0;
             numAmount.Value = 0;
             txtDescription.Clear();
@@ -185,11 +202,13 @@ namespace Staff_expenses_claim
 
             txtStaffName.Focus();
         }
-
+        
+        // Event handler for the expense category selection change event
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string category = cboCategory.Text;
+            string category = cboExpenseCategory.Text;
 
+            // Enable or disable input fields based on the selected category
             if (category == "Mileage")
             {
                 
