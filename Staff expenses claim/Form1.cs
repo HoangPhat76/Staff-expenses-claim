@@ -11,9 +11,18 @@ namespace Staff_expenses_claim
         public Form1()
         {
             InitializeComponent();
-            // Set the maximum date for the DateTimePicker to today's date
-            dtpExpenseDate.MaxDate = DateTime.Now;
+            // Lecturer requirement: Set the maximum date for the DateTimePicker to today's date so it cannot be set to a future date
+            dtpExpenseDate.MaxDate = DateTime.Today;
 
+            // Require a category before entering kilometres or amount.
+            cboExpenseCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboExpenseCategory.SelectedIndex = -1;
+
+            numKilometres.Enabled = false;
+            numExpenseAmount.Enabled = false;
+
+            lblEstimate.Text = "$0.00";
+            lblAdjustmentMessage.Text = "---";
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -24,6 +33,10 @@ namespace Staff_expenses_claim
         // Event handler for the Calculate button click event
         private void btnCal_Click(object sender, EventArgs e)
         {
+            // Remove the previous estimate before validating new input.
+            lblEstimate.Text = "$0.00";
+            lblAdjustmentMessage.Text = "---";
+
             // Error handling for empty fields
             if (txtStaffName.Text == "")
             {
@@ -88,6 +101,8 @@ namespace Staff_expenses_claim
 
                 lblEstimate.Text = estimate.ToString("C2");
 
+                lblAdjustmentMessage.Text = "Mileage calculated at $0.85 per kilometre.";
+
                 // Display the estimated reimbursement
                 MessageBox.Show(
                     "Estimate calculated successfully. \n\n" +
@@ -102,7 +117,7 @@ namespace Staff_expenses_claim
             //Meal
             else if (category == "Meal")
             {
-                decimal amount = numAmount.Value;
+                decimal amount = numExpenseAmount.Value;
 
                 if (amount <= 0)
                 {
@@ -113,7 +128,7 @@ namespace Staff_expenses_claim
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
                     );
-                    numAmount.Focus();
+                    numExpenseAmount.Focus();
                     return;
                 }
 
@@ -146,7 +161,7 @@ namespace Staff_expenses_claim
             //Parking
             else if (category == "Parking")
             {
-                decimal amount = numAmount.Value;
+                decimal amount = numExpenseAmount.Value;
                 if (amount <= 0)
                 {
                     // Error handling for invalid parking amount input
@@ -156,7 +171,7 @@ namespace Staff_expenses_claim
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error
                     );
-                    numAmount.Focus();
+                    numExpenseAmount.Focus();
                     return;
                 }
                 decimal estimate;
@@ -194,9 +209,10 @@ namespace Staff_expenses_claim
             txtStaffName.Clear();
             cboExpenseCategory.SelectedIndex = -1;
             numKilometres.Value = 0;
-            numAmount.Value = 0;
+            numExpenseAmount.Value = 0;
             txtDescription.Clear();
 
+            // Reset the result labels
             lblEstimate.Text = "$0.00";
             lblAdjustmentMessage.Text = "---";
 
@@ -206,6 +222,9 @@ namespace Staff_expenses_claim
         // Event handler for the expense category selection change event
         private void cboCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lblEstimate.Text = "$0.00";
+            lblAdjustmentMessage.Text = "---";
+
             string category = cboExpenseCategory.Text;
 
             // Enable or disable input fields based on the selected category
@@ -213,15 +232,15 @@ namespace Staff_expenses_claim
             {
                 
                 numKilometres.Enabled = true;
-                numAmount.Enabled = false;
+                numExpenseAmount.Enabled = false;
 
-                numAmount.Value = 0;
+                numExpenseAmount.Value = 0;
             }
             else if (category == "Meal" || category == "Parking")
             {
                 
                 numKilometres.Enabled = false;
-                numAmount.Enabled = true;
+                numExpenseAmount.Enabled = true;
 
                 numKilometres.Value = 0;
             }
@@ -229,7 +248,7 @@ namespace Staff_expenses_claim
             {
                 
                 numKilometres.Enabled = false;
-                numAmount.Enabled = false;
+                numExpenseAmount.Enabled = false;
 
             }
         }
